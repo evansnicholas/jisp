@@ -1,0 +1,14 @@
+{
+  "name": "jisp",
+  "version": "0.1.0",
+  "description": "An executable expression language with JSON syntax.",
+  "main": "index.js",
+  "devDependencies" : {
+    "mocha": "^2.3.3"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "author": "Nick Evans",
+  "license": "ISC"
+}
