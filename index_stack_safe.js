@@ -1,42 +1,47 @@
-var eval = function(expr) {
+var eval = function (expr) {
 	var stack = [];
 	var currEval;
 	var toVisit = [expr];
-	
+
 	if (typeof expr === "number") {
 		return expr;
 	}
-	
-	while(toVisit.length > 0 || stack.length > 0) {
+	while (toVisit.length > 0 || stack.length > 0) {
 		if (stack.length > 0) {
-		  var top = stack.pop();
-		  if (top.args.length === 2) {
-			currEval = evalOp(top);
-			if (stack.length > 0) {
-			  var nextTop = stack.pop();
-			  nextTop.args.push(currEval);
-			  stack.push(nextTop);
-			}
-		  } else {
-		    var next = toVisit.pop();
-            if (typeof next ===	"number") {
-              top.args.push(next);
-			  stack.push(top);
+			var top = stack.pop();
+			if (top.args.length === 2) {
+				currEval = evalOp(top);
+				if (stack.length > 0) {
+					var nextTop = stack.pop();
+					nextTop.args.push(currEval);
+					stack.push(nextTop);
+				}
 			} else {
-			  stack.push(top);
-			  stack.push({op: next.op, args: []});
-			  toVisit = toVisit.concat(next.args.reverse());
+				var next = toVisit.pop();
+				if (typeof next === "number") {
+					top.args.push(next);
+					stack.push(top);
+				} else {
+					stack.push(top);
+					stack.push({
+						op : next.op,
+						args : []
+					});
+					toVisit = toVisit.concat(next.args.reverse());
+				}
 			}
-		  }
 		} else {
-          var next = toVisit.pop();
-		  stack.push({op: next.op, args: []});
-		  toVisit = toVisit.concat(next.args.reverse());
-        }		
-		
+			var next = toVisit.pop();
+			stack.push({
+				op : next.op,
+				args : []
+			});
+			toVisit = toVisit.concat(next.args.reverse());
+		}
+
 		console.log("to visit");
 		console.log(toVisit);
-		
+
 		console.log("stack");
 		console.log(stack);
 		console.log("")
