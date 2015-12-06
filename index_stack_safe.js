@@ -1,11 +1,3 @@
-var evalOld = function (expr) {
-	if (typeof expr === "number") {
-		return expr;
-	} else {
-		return evalOp(expr);
-	}
-};
-
 var eval = function(expr) {
 	var stack = [];
 	var currEval;
