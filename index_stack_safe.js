@@ -39,12 +39,12 @@ var eval = function (expr) {
 			toVisit = toVisit.concat(next.args.reverse());
 		}
 
-		console.log("to visit");
-		console.log(toVisit);
+		// console.log("to visit");
+		// console.log(toVisit);
 
-		console.log("stack");
-		console.log(stack);
-		console.log("")
+		// console.log("stack");
+		// console.log(stack);
+		// console.log("")
 	}
 	return currEval;
 };
